@@ -21,7 +21,7 @@ function player.new(x, y, player_id)
 	self.ddy = 0
 
 	-- todo: set
-	self.height = 13
+	self.height = 28 
 	self.spr_y = 15
 
 	self.width = 8
@@ -58,6 +58,8 @@ function player.new(x, y, player_id)
 	self.press_u = false
 	self.press_d = false
 
+	self.coll_x_offset = -8
+
 	self.death_timer = nil
 
 	self.sprite_id = 202 
@@ -78,13 +80,13 @@ function player:draw()
 	spr(self.sprite_id, self.x, self.y, 3, 4, self.looking_left, false)
 
 	-- if debug then
-	-- 	-- by sprite limits
+	-- 	-- by sprite limits, magenta
 	-- 	pset(self.x, self.y, 2)
-	-- 	pset(self.x + 8, self.y, 2)
-	-- 	pset(self.x, self.y + 16, 2)
-	-- 	pset(self.x + 8, self.y + 16, 2)
+	-- 	pset(self.x + 8*self.sprite_size_x, self.y, 2)
+	-- 	pset(self.x, self.y + 8*self.sprite_size_y, 2)
+	-- 	pset(self.x + 8*self.sprite_size_x, self.y + 8*self.sprite_size_y, 2)
 
-	-- 	-- player area
+	-- 	-- player area, green
 	-- 	pset(entity_left_sprite(self), entity_top_sprite(self), 3)
 	-- 	pset(entity_right_sprite(self), entity_top_sprite(self), 3)
 	-- 	pset(entity_left_sprite(self), entity_bottom_sprite(self), 3)
@@ -105,7 +107,10 @@ function player:press_x(state)
 end
 
 function player:press_o(state)
-	self.press_attack = state
+	if (state) then
+		log("press o")
+		self:hit()
+	end
 end
 
 function player:control()
@@ -147,3 +152,14 @@ function player:update()
 	-- self:walk_animation()
 end
 
+
+function player:hit()
+	for i,b in pairs(balloons) do
+		x1,y1 = b:top_left()
+		x2,y2 = b:bottom_right()
+		if does_entity_collide_with_square(self, x1,x2, y1,y2) then
+			b:hit()
+		end
+	end
+
+end

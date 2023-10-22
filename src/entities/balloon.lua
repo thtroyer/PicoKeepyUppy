@@ -89,6 +89,35 @@ function balloon:lowest_point()
 	return self.x, self.y +7 
 end
 
+function balloon:top_point()
+	return self.x, self.y -7 
+end
+
+function balloon:left_point()
+	return self.x-4, self.y
+end
+
+function balloon:right_point()
+	return self.x+4, self.y
+end
+
+function balloon:top_left()
+	return self.x-4, self.y-7
+end
+
+function balloon:bottom_right()
+	return self.x+4, self.y+7
+end
+
+function balloon:hit()
+	self.dy = rand(-5,-10)
+	self.da = rand(-.25,.25)
+	self.dx = rand(-3,3)
+	if self.is_airborne == false then
+		self.y = 120 
+		self.is_airborne = true
+	end
+end
 
 -- function move_towards(arg, towards, speed)
 	
