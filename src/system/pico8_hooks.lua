@@ -3,7 +3,7 @@ balloons = {}
 players = {}
 
 function _init()
-    print("hello!")
+    log("game init")
 	--	title_screen = true
 	--	draw_title_screen()
 	add(players, player.new(20, 30, 1))

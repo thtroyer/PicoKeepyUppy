@@ -17,6 +17,7 @@ function update()
 		b:update()
 	end
 
+	camera_update(players, balloons)
 
 end
 

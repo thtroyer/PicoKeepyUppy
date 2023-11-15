@@ -62,9 +62,9 @@ function player.new(x, y, player_id)
 
 	self.death_timer = nil
 
-	self.sprite_id = 202 
+	self.sprite_id = 8 
 	if (player_id == 1) then
-		self.sprite_id = 199 
+		self.sprite_id = 5
 	end
 
 	return self

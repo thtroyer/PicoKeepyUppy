@@ -14,7 +14,8 @@ function balloon:new(x, y, z, dx, dy, dz)
 	o.grav = 0.05
 
 	o.dx = dx
-	o.dy = dy o.dz = dz
+	o.dy = dy 
+	o.dz = dz
 
     o.angle = rand(0,1)
     o.da = 0
