@@ -1,6 +1,9 @@
 pico-8 cartridge // http://www.pico-8.com
 version 41
 __lua__
+--pico keepy uppy
+--demo1
+
 #include src/utility/log.lua
 #include src/utility/math.lua
 #include src/utility/random.lua
